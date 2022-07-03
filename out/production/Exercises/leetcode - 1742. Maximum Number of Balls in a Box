@@ -1,0 +1,31 @@
+class Solution {
+    public int countBalls(int lowLimit, int highLimit) {
+        int[] boxes = new int [46];
+        
+        for (int i = lowLimit; i <= highLimit; i++){
+            int sum = getDigitsSum(i);
+            for (int j=1;j<boxes.length;j++){
+                if (sum==j) boxes[j]=boxes[j]+1;
+            }
+        }
+        int max=0;
+        for (int i = 0; i < boxes.length; i++){
+            if (boxes[i]>max) max=boxes[i];
+        }
+            
+        return max;
+        
+    }
+    
+    public static int getDigitsSum(int n){
+        double k = (double) n;
+        int sum=0;
+        while (k >= 1){
+           sum+= n % 10;
+            k = k / 10;
+            n = (int) n / 10;
+        }
+        return sum;
+    }
+    
+}
