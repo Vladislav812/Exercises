@@ -7,33 +7,31 @@ public class MoveRobot {
         int dX = robot.getX() - toX;
         int dY = robot.getY() - toY;
 
+        robotUp(robot);
         if (dX > 0) {
-            while (robot.getDirection() != Direction.LEFT) {
-                robot.turnLeft();
-            }
+            robot.turnLeft();
         } else {
-            while (robot.getDirection() != Direction.RIGHT) {
-                robot.turnLeft();
-            }
+            robot.turnRight();
         }
         for (int i = 0; i < Math.abs(dX); i++) {
             robot.stepForward();
         }
 
+        robotUp(robot);
         if (dY > 0) {
-            while (robot.getDirection() != Direction.DOWN) {
-                robot.turnLeft();
-            }
-        } else {
-            while (robot.getDirection() != Direction.UP) {
-                robot.turnLeft();
-            }
+            robot.turnLeft();
+            robot.turnLeft();
         }
         for (int i = 0; i < Math.abs(dY); i++) {
             robot.stepForward();
         }
 
-
         System.out.println(robot.getX() + " " + robot.getY());
+    }
+
+    static void robotUp(Robot robot) {
+        while (robot.getDirection() != Direction.UP) {
+            robot.turnLeft();
+        }
     }
 }
